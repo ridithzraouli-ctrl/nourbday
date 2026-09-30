@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<title>Order ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(220,190,220,.35),transparent 35%),
+        linear-gradient(135deg,#f8e8ee,#eee4f3,#e8edf5);
+    color:#4d4050;
+    font-family:'Quicksand',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+}
+
+.decor{
+    position:fixed;
+    color:rgba(150,115,145,.28);
+    font-family:Georgia,serif;
+    pointer-events:none;
+    user-select:none;
+}
+
+.d1{top:7%;left:8%;font-size:24px}
+.d2{top:18%;right:10%;font-size:18px}
+.d3{bottom:12%;left:12%;font-size:22px}
+.d4{bottom:8%;right:9%;font-size:26px}
+
+.container{
+    width:min(900px,94vw);
+    padding:35px 25px 30px;
+    text-align:center;
+    background:rgba(255,255,255,.52);
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:30px;
+    box-shadow:0 20px 60px rgba(100,75,100,.14);
+    backdrop-filter:blur(12px);
+}
+
+h1{
+    margin:0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:52px;
+    line-height:1;
+    color:#72566f;
+    font-weight:700;
+}
+
+.subtitle{
+    margin:8px 0 22px;
+    font-size:15px;
+    color:#806d7d;
+}
+
+.round{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    color:#806179;
+    margin-bottom:5px;
+}
+
+.instruction{
+    min-height:25px;
+    font-size:14px;
+    color:#806d7d;
+    margin-bottom:18px;
+}
+
+.grid{
+    width:min(760px,100%);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(2,105px);
+    gap:12px;
+    padding:14px;
+    background:rgba(255,255,255,.3);
+    border-radius:22px;
+}
+
+.grid-cell{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-width:0;
+    min-height:0;
+}
+
+.shape{
+    width:76px;
+    height:76px;
+    cursor:grab;
+    user-select:none;
+    touch-action:none;
+    filter:drop-shadow(0 7px 8px rgba(70,50,70,.18));
+    transition:transform .15s ease,filter .15s ease;
+}
+
+.shape:active{
+    cursor:grabbing;
+}
+
+.shape.dragging{
+    transform:scale(1.1);
+    filter:drop-shadow(0 11px 14px rgba(70,50,70,.25));
+    z-index:10;
+}
+
+.circle{
+    border-radius:50%;
+}
+
+.square{
+    border-radius:12px;
+}
+
+.triangle{
+    width:0;
+    height:0;
+    border-left:38px solid transparent;
+    border-right:38px solid transparent;
+    border-bottom:72px solid;
+    filter:drop-shadow(0 7px 8px rgba(70,50,70,.18));
+}
+
+.diamond{
+    width:55px;
+    height:55px;
+    transform:rotate(45deg);
+    border-radius:8px;
+}
+
+.star{
+    clip-path:polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 94%,
+        50% 72%,
+        21% 94%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+.heart{
+    position:relative;
+    width:68px;
+    height:62px;
+    transform:rotate(-45deg);
+    border-radius:9px 0 9px 9px;
+}
+
+.heart:before,
+.heart:after{
+    content:"";
+    position:absolute;
+    width:68px;
+    height:68px;
+    border-radius:50%;
+}
+
+.heart:before{
+    top:-34px;
+    left:0;
+}
+
+.heart:after{
+    top:0;
+    left:34px;
+}
+
+.pink{background:#e9a8bd}
+.blue{background:#9bbbd1}
+.lavender{background:#b9a8d5}
+.tan{background:#cdb18c}
+.red{background:#c98791}
+.green{background:#9eb79d}
+
+.triangle.pink{border-bottom-color:#e9a8bd;background:none}
+.triangle.blue{border-bottom-color:#9bbbd1;background:none}
+.triangle.lavender{border-bottom-color:#b9a8d5;background:none}
+.triangle.tan{border-bottom-color:#cdb18c;background:none}
+.triangle.red{border-bottom-color:#c98791;background:none}
+.triangle.green{border-bottom-color:#9eb79d;background:none}
+
+.heart.pink:before,.heart.pink:after{background:#e9a8bd}
+.heart.blue:before,.heart.blue:after{background:#9bbbd1}
+.heart.lavender:before,.heart.lavender:after{background:#b9a8d5}
+.heart.tan:before,.heart.tan:after{background:#cdb18c}
+.heart.red:before,.heart.red:after{background:#c98791}
+.heart.green:before,.heart.green:after{background:#9eb79d}
+
+.controls{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    padding:12px 24px;
+    border-radius:999px;
+    background:rgba(126,94,123,.9);
+    color:white;
+    font-family:'Quicksand',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 6px 15px rgba(90,65,90,.15);
+    transition:transform .15s ease,background .15s ease;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    background:#876881;
+}
+
+button:active{
+    transform:translateY(0);
+}
+
+button.secondary{
+    background:rgba(255,255,255,.75);
+    color:#745c70;
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:default;
+    transform:none;
+}
+
+.success-window{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(62,48,62,.3);
+    backdrop-filter:blur(6px);
+    z-index:100;
+}
+
+.success-box{
+    width:min(430px,88vw);
+    padding:38px 28px;
+    background:#fff8fb;
+    border-radius:28px;
+    box-shadow:0 25px 70px rgba(60,40,60,.25);
+    text-align:center;
+    animation:pop .35s ease;
+}
+
+.success-box h2{
+    margin:0 0 20px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:38px;
+    color:#75586f;
+}
+
+@keyframes pop{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+@media(max-width:600px){
+    .container{
+        padding:27px 12px 22px;
+        width:96vw;
+    }
+
+    h1{
+        font-size:44px;
+    }
+
+    .grid{
+        gap:7px;
+        padding:8px;
+        grid-template-rows:repeat(2,85px);
+    }
+
+    .shape{
+        width:60px;
+        height:60px;
+    }
+
+    .triangle{
+        border-left-width:30px;
+        border-right-width:30px;
+        border-bottom-width:57px;
+    }
+
+    .diamond{
+        width:45px;
+        height:45px;
+    }
+
+    .heart{
+        width:54px;
+        height:49px;
+    }
+
+    .heart:before,
+    .heart:after{
+        width:54px;
+        height:54px;
+    }
+
+    .heart:before{
+        top:-27px;
+    }
+
+    .heart:after{
+        left:27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="decor d1">✦</div>
+<div class="decor d2">♡</div>
+<div class="decor d3">✧</div>
+<div class="decor d4">✦</div>
+
+<div class="container">
+
+    <h1>Order ♡</h1>
+    <div class="subtitle">remember the order, then put them back</div>
+
+    <div class="round" id="roundText">Round 1</div>
+    <div class="instruction" id="instruction">
+        Look carefully...
+    </div>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="controls">
+        <button id="checkBtn" onclick="checkOrder()" disabled>DONE</button>
+        <button id="lookBtn" class="secondary" onclick="lookAgain()" disabled>LOOK AGAIN</button>
+    </div>
+
+</div>
+
+<div class="success-window" id="successWindow">
+    <div class="success-box">
+        <h2>YAY GOODJOBBB</h2>
+        <button onclick="goNext()">NEXT ♡</button>
+    </div>
+</div>
+
+<script>
+const shapeData = [
+    {type:"circle",color:"pink"},
+    {type:"square",color:"blue"},
+    {type:"triangle",color:"lavender"},
+    {type:"diamond",color:"tan"},
+    {type:"star",color:"red"},
+    {type:"heart",color:"green"}
+];
+
+const roundSizes = [4,5,6];
+
+let round = 0;
+let correctOrder = [];
+let currentOrder = [];
+let previewing = true;
+let draggingShape = null;
+let draggingCell = null;
+let dragMoved = false;
+
+const grid = document.getElementById("grid");
+const instruction = document.getElementById("instruction");
+const roundText = document.getElementById("roundText");
+const checkBtn = document.getElementById("checkBtn");
+const lookBtn = document.getElementById("lookBtn");
+
+function shuffle(array){
+    const result = [...array];
+
+    for(let i=result.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [result[i],result[j]]=[result[j],result[i]];
+    }
+
+    return result;
+}
+
+function createShape(shape){
+    const el=document.createElement("div");
+
+    el.className=`shape ${shape.type} ${shape.color}`;
+    el.dataset.type=shape.type;
+    el.dataset.color=shape.color;
+
+    return el;
+}
+
+function getShapeData(type){
+    return shapeData.find(s=>s.type===type);
+}
+
+function createCells(){
+    grid.innerHTML="";
+
+    for(let i=0;i<8;i++){
+        const cell=document.createElement("div");
+        cell.className="grid-cell";
+        cell.dataset.index=i;
+
+        grid.appendChild(cell);
+    }
+}
+
+function randomCells(count){
+    const cells=[0,1,2,3,4,5,6,7];
+
+    for(let i=cells.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [cells[i],cells[j]]=[cells[j],cells[i]];
+    }
+
+    return cells.slice(0,count);
+}
+
+function renderShapes(order,canMove=true){
+    createCells();
+
+    const positions=randomCells(order.length);
+
+    order.forEach((type,i)=>{
+        const cell=grid.children[positions[i]];
+        const shape=createShape(getShapeData(type));
+
+        if(canMove){
+            enableDragging(shape);
+        }
+
+        cell.appendChild(shape);
+    });
+}
+
+function renderFixedOrder(order,canMove=false){
+    createCells();
+
+    order.forEach((type,i)=>{
+        const cell=grid.children[i];
+        const shape=createShape(getShapeData(type));
+
+        if(canMove){
+            enableDragging(shape);
+        }
+
+        cell.appendChild(shape);
+    });
+}
+
+function enableDragging(shape){
+    shape.addEventListener("mousedown",startDrag);
+    shape.addEventListener("touchstart",startDrag,{passive:false});
+}
+
+function startDrag(e){
+    if(previewing) return;
+
+    e.preventDefault();
+
+    draggingShape=e.currentTarget;
+    draggingCell=draggingShape.parentElement;
+    dragMoved=false;
+
+    draggingShape.classList.add("dragging");
+
+    document.addEventListener("mousemove",moveDrag);
+    document.addEventListener("mouseup",endDrag);
+
+    document.addEventListener("touchmove",moveDrag,{passive:false});
+    document.addEventListener("touchend",endDrag);
+}
+
+function getPointerPosition(e){
+    if(e.touches && e.touches.length){
+        return {
+            x:e.touches[0].clientX,
+            y:e.touches[0].clientY
+        };
+    }
+
+    return {
+        x:e.clientX,
+        y:e.clientY
+    };
+}
+
+function getCellAtPoint(x,y){
+    const elements=document.elementsFromPoint(x,y);
+
+    for(const element of elements){
+        if(element.classList && element.classList.contains("grid-cell")){
+            return element;
+        }
+
+        if(element.parentElement &&
+           element.parentElement.classList &&
+           element.parentElement.classList.contains("grid-cell")){
+            return element.parentElement;
+        }
+    }
+
+    return null;
+}
+
+function moveDrag(e){
+    if(!draggingShape) return;
+
+    e.preventDefault();
+
+    const point=getPointerPosition(e);
+    const targetCell=getCellAtPoint(point.x,point.y);
+
+    if(targetCell && targetCell!==draggingCell){
+        dragMoved=true;
+        swapIntoCell(draggingCell,targetCell);
+        draggingCell=targetCell;
+    }
+}
+
+function swapIntoCell(fromCell,toCell){
+    const targetShape=toCell.querySelector(".shape");
+
+    if(targetShape){
+        fromCell.appendChild(targetShape);
+    }
+
+    toCell.appendChild(draggingShape);
+}
+
+function endDrag(){
+    if(!draggingShape) return;
+
+    draggingShape.classList.remove("dragging");
+
+    document.removeEventListener("mousemove",moveDrag);
+    document.removeEventListener("mouseup",endDrag);
+
+    document.removeEventListener("touchmove",moveDrag);
+    document.removeEventListener("touchend",endDrag);
+
+    draggingShape=null;
+    draggingCell=null;
+}
+
+function getCurrentOrder(){
+    const result=[];
+
+    [...grid.children].forEach(cell=>{
+        const shape=cell.querySelector(".shape");
+
+        if(shape){
+            result.push(shape.dataset.type);
+        }
+    });
+
+    return result;
+}
+
+function arraysEqual(a,b){
+    if(a.length!==b.length) return false;
+
+    return a.every((value,index)=>value===b[index]);
+}
+
+function beginRound(){
+    previewing=true;
+
+    roundText.textContent=`Round ${round+1}`;
+    instruction.textContent="Look carefully...";
+
+    checkBtn.disabled=true;
+    lookBtn.disabled=true;
+
+    correctOrder=shuffle(
+        shapeData
+            .slice(0,roundSizes[round])
+            .map(shape=>shape.type)
+    );
+
+    renderFixedOrder(correctOrder,false);
+
+    setTimeout(()=>{
+        if(round<roundSizes.length){
+            hideAndShuffle();
+        }
+    },2200);
+}
+
+function hideAndShuffle(){
+    previewing=false;
+
+    const shuffledOrder=shuffle([...correctOrder]);
+
+    renderShapes(shuffledOrder,true);
+
+    instruction.textContent="Put them in the correct order.";
+    checkBtn.disabled=false;
+    lookBtn.disabled=false;
+}
+
+function checkOrder(){
+    if(previewing) return;
+
+    currentOrder=getCurrentOrder();
+
+    if(arraysEqual(currentOrder,correctOrder)){
+        checkBtn.disabled=true;
+        lookBtn.disabled=true;
+        instruction.textContent="✦ correct ♡";
+
+        setTimeout(()=>{
+            nextRound();
+        },650);
+
+    }else{
+        instruction.textContent="try again dumbass";
+
+        checkBtn.disabled=false;
+        lookBtn.disabled=false;
+
+        // Nothing is moved or reshuffled here.
+        // The correct answer also stays exactly the same.
+    }
+}
+
+function lookAgain(){
+    if(previewing) return;
+
+    previewing=true;
+
+    checkBtn.disabled=true;
+    lookBtn.disabled=true;
+
+    instruction.textContent="Look carefully...";
+
+    // Show the SAME correct answer.
+    renderFixedOrder(correctOrder,false);
+
+    setTimeout(()=>{
+        if(!previewing) return;
+
+        // Only LOOK AGAIN causes the displayed order to change.
+        // correctOrder itself NEVER changes.
+        const shuffledOrder=shuffle([...correctOrder]);
+
+        previewing=false;
+
+        renderShapes(shuffledOrder,true);
+
+        instruction.textContent="Put them in the correct order.";
+        checkBtn.disabled=false;
+        lookBtn.disabled=false;
+    },2200);
+}
+
+function nextRound(){
+    round++;
+
+    if(round>=roundSizes.length){
+        showSuccess();
+        return;
+    }
+
+    beginRound();
+}
+
+function showSuccess(){
+    document.getElementById("successWindow").style.display="flex";
+}
+
+function goNext(){
+    window.location.href="match.html";
+}
+
+beginRound();
+  </script>
+</body>
+</html>
