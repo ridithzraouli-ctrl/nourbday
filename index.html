@@ -2,191 +2,185 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
-<title>Order ♡</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>♡</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Quicksand:wght@400;500;600&display=swap');
 
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-    margin:0;
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.8),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(220,190,220,.35),transparent 35%),
-        linear-gradient(135deg,#f8e8ee,#eee4f3,#e8edf5);
-    color:#4d4050;
-    font-family:'Quicksand',sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow-x:hidden;
+min-height:100vh;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+radial-gradient(circle at 80% 70%,rgba(255,255,255,.8) 0 1px,transparent 2px),
+linear-gradient(135deg,#f5e9ed,#eadde5 50%,#f7edf0);
+background-size:130px 130px,170px 170px,100% 100%;
+color:#594b55;
+font-family:'Quicksand',sans-serif;
+overflow-x:hidden;
 }
 
-.decor{
-    position:fixed;
-    color:rgba(150,115,145,.28);
-    font-family:Georgia,serif;
-    pointer-events:none;
-    user-select:none;
+body::before,body::after{
+content:"✦";
+position:fixed;
+font-family:'Cormorant Garamond',serif;
+font-size:90px;
+color:rgba(255,255,255,.55);
+pointer-events:none;
+}
+body::before{top:20px;left:30px}
+body::after{bottom:10px;right:35px;font-size:70px}
+
+.page{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:55px 20px;
 }
 
-.d1{top:7%;left:8%;font-size:24px}
-.d2{top:18%;right:10%;font-size:18px}
-.d3{bottom:12%;left:12%;font-size:22px}
-.d4{bottom:8%;right:9%;font-size:26px}
-
-.container{
-    width:min(900px,94vw);
-    padding:35px 25px 30px;
-    text-align:center;
-    background:rgba(255,255,255,.52);
-    border:1px solid rgba(255,255,255,.7);
-    border-radius:30px;
-    box-shadow:0 20px 60px rgba(100,75,100,.14);
-    backdrop-filter:blur(12px);
+.ornament{
+font-family:'Cormorant Garamond',serif;
+color:#a88696;
+font-size:20px;
+letter-spacing:10px;
+margin-bottom:12px;
 }
 
 h1{
-    margin:0;
-    font-family:'Cormorant Garamond',serif;
-    font-size:52px;
-    line-height:1;
-    color:#72566f;
-    font-weight:700;
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(42px,8vw,70px);
+font-weight:500;
+color:#594b55;
+letter-spacing:2px;
+margin-bottom:8px;
 }
 
 .subtitle{
-    margin:8px 0 22px;
-    font-size:15px;
-    color:#806d7d;
+font-family:'Cormorant Garamond',serif;
+font-size:19px;
+color:#9b7f8d;
+letter-spacing:3px;
+margin-bottom:28px;
 }
 
-.round{
-    font-family:'Cormorant Garamond',serif;
-    font-size:24px;
-    color:#806179;
-    margin-bottom:5px;
+.round-info{
+font-family:'Cormorant Garamond',serif;
+font-size:24px;
+color:#806879;
+margin-bottom:5px;
 }
 
 .instruction{
-    min-height:25px;
-    font-size:14px;
-    color:#806d7d;
-    margin-bottom:18px;
+min-height:24px;
+font-family:'Cormorant Garamond',serif;
+font-size:18px;
+color:#9b7f8d;
+letter-spacing:1px;
+margin-bottom:22px;
+text-align:center;
+}
+
+.game-container{
+width:min(760px,100%);
+padding:25px;
+background:rgba(255,250,252,.65);
+border:1px solid rgba(255,255,255,.85);
+border-radius:28px;
+box-shadow:
+0 20px 60px rgba(101,75,91,.13),
+inset 0 0 30px rgba(255,255,255,.35);
+backdrop-filter:blur(12px);
 }
 
 .grid{
-    width:min(760px,100%);
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    grid-template-rows:repeat(2,105px);
-    gap:12px;
-    padding:14px;
-    background:rgba(255,255,255,.3);
-    border-radius:22px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-template-rows:repeat(2,105px);
+gap:15px;
 }
 
 .grid-cell{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-width:0;
-    min-height:0;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+border-radius:18px;
 }
 
 .shape{
-    width:76px;
-    height:76px;
-    cursor:grab;
-    user-select:none;
-    touch-action:none;
-    filter:drop-shadow(0 7px 8px rgba(70,50,70,.18));
-    transition:transform .15s ease,filter .15s ease;
+width:70px;
+height:70px;
+cursor:grab;
+user-select:none;
+touch-action:none;
+filter:drop-shadow(0 8px 10px rgba(95,70,85,.16));
+transition:transform .15s ease,filter .15s ease;
 }
 
-.shape:active{
-    cursor:grabbing;
-}
+.shape:active{cursor:grabbing}
 
 .shape.dragging{
-    transform:scale(1.1);
-    filter:drop-shadow(0 11px 14px rgba(70,50,70,.25));
-    z-index:10;
+transform:scale(1.08);
+filter:drop-shadow(0 12px 16px rgba(95,70,85,.25));
+z-index:10;
 }
 
-.circle{
-    border-radius:50%;
-}
-
-.square{
-    border-radius:12px;
-}
+.circle{border-radius:50%}
+.square{border-radius:12px}
 
 .triangle{
-    width:0;
-    height:0;
-    border-left:38px solid transparent;
-    border-right:38px solid transparent;
-    border-bottom:72px solid;
-    filter:drop-shadow(0 7px 8px rgba(70,50,70,.18));
+width:0;
+height:0;
+background:transparent!important;
+border-left:37px solid transparent;
+border-right:37px solid transparent;
+border-bottom:68px solid;
+filter:drop-shadow(0 8px 10px rgba(95,70,85,.16));
 }
 
 .diamond{
-    width:55px;
-    height:55px;
-    transform:rotate(45deg);
-    border-radius:8px;
+width:52px;
+height:52px;
+border-radius:8px;
+transform:rotate(45deg);
+}
+
+.diamond.dragging{
+transform:rotate(45deg) scale(1.08);
 }
 
 .star{
-    clip-path:polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 94%,
-        50% 72%,
-        21% 94%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-    );
+clip-path:polygon(
+50% 0%,61% 35%,98% 35%,68% 57%,79% 94%,
+50% 72%,21% 94%,32% 57%,2% 35%,39% 35%
+);
 }
 
 .heart{
-    position:relative;
-    width:68px;
-    height:62px;
-    transform:rotate(-45deg);
-    border-radius:9px 0 9px 9px;
+width:58px;
+height:58px;
+position:relative;
+transform:rotate(-45deg);
+border-radius:8px;
+margin-top:10px;
+margin-left:10px;
 }
 
-.heart:before,
-.heart:after{
-    content:"";
-    position:absolute;
-    width:68px;
-    height:68px;
-    border-radius:50%;
+.heart::before,.heart::after{
+content:"";
+position:absolute;
+width:58px;
+height:58px;
+border-radius:50%;
 }
 
-.heart:before{
-    top:-34px;
-    left:0;
-}
+.heart::before{top:-29px;left:0}
+.heart::after{top:0;left:29px}
 
-.heart:after{
-    top:0;
-    left:34px;
+.heart.dragging{
+transform:rotate(-45deg) scale(1.08);
 }
 
 .pink{background:#e9a8bd}
@@ -196,514 +190,631 @@ h1{
 .red{background:#c98791}
 .green{background:#9eb79d}
 
-.triangle.pink{border-bottom-color:#e9a8bd;background:none}
-.triangle.blue{border-bottom-color:#9bbbd1;background:none}
-.triangle.lavender{border-bottom-color:#b9a8d5;background:none}
-.triangle.tan{border-bottom-color:#cdb18c;background:none}
-.triangle.red{border-bottom-color:#c98791;background:none}
-.triangle.green{border-bottom-color:#9eb79d;background:none}
+.triangle.pink{border-bottom-color:#e9a8bd}
+.triangle.blue{border-bottom-color:#9bbbd1}
+.triangle.lavender{border-bottom-color:#b9a8d5}
+.triangle.tan{border-bottom-color:#cdb18c}
+.triangle.red{border-bottom-color:#c98791}
+.triangle.green{border-bottom-color:#9eb79d}
 
-.heart.pink:before,.heart.pink:after{background:#e9a8bd}
-.heart.blue:before,.heart.blue:after{background:#9bbbd1}
-.heart.lavender:before,.heart.lavender:after{background:#b9a8d5}
-.heart.tan:before,.heart.tan:after{background:#cdb18c}
-.heart.red:before,.heart.red:after{background:#c98791}
-.heart.green:before,.heart.green:after{background:#9eb79d}
+.heart.pink::before,.heart.pink::after{background:#e9a8bd}
+.heart.blue::before,.heart.blue::after{background:#9bbbd1}
+.heart.lavender::before,.heart.lavender::after{background:#b9a8d5}
+.heart.tan::before,.heart.tan::after{background:#cdb18c}
+.heart.red::before,.heart.red::after{background:#c98791}
+.heart.green::before,.heart.green::after{background:#9eb79d}
 
 .controls{
-    margin-top:22px;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+margin-top:24px;
 }
 
-button{
-    border:none;
-    padding:12px 24px;
-    border-radius:999px;
-    background:rgba(126,94,123,.9);
-    color:white;
-    font-family:'Quicksand',sans-serif;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 6px 15px rgba(90,65,90,.15);
-    transition:transform .15s ease,background .15s ease;
+.game-button{
+border:none;
+background:#a88696;
+color:white;
+font-family:'Quicksand',sans-serif;
+font-size:14px;
+letter-spacing:2px;
+padding:13px 28px;
+border-radius:50px;
+cursor:pointer;
+transition:transform .2s ease,background .2s ease,opacity .2s ease;
 }
 
-button:hover{
-    transform:translateY(-2px);
-    background:#876881;
+.game-button:hover{
+transform:translateY(-3px);
+background:#947184;
 }
 
-button:active{
-    transform:translateY(0);
+.game-button.secondary{
+background:rgba(255,255,255,.8);
+color:#806879;
 }
 
-button.secondary{
-    background:rgba(255,255,255,.75);
-    color:#745c70;
+.game-button:disabled{
+opacity:.45;
+cursor:default;
+transform:none;
 }
 
-button:disabled{
-    opacity:.45;
-    cursor:default;
-    transform:none;
+.bottom-ornament{
+margin-top:30px;
+color:#a88696;
+font-family:'Cormorant Garamond',serif;
+font-size:24px;
+letter-spacing:12px;
 }
 
-.success-window{
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(62,48,62,.3);
-    backdrop-filter:blur(6px);
-    z-index:100;
+.win-screen{
+position:fixed;
+inset:0;
+z-index:20;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px;
+background:rgba(72,54,65,.35);
+backdrop-filter:blur(8px);
+opacity:0;
+pointer-events:none;
+transition:opacity .5s ease;
 }
 
-.success-box{
-    width:min(430px,88vw);
-    padding:38px 28px;
-    background:#fff8fb;
-    border-radius:28px;
-    box-shadow:0 25px 70px rgba(60,40,60,.25);
-    text-align:center;
-    animation:pop .35s ease;
+.win-screen.show{
+opacity:1;
+pointer-events:auto;
 }
 
-.success-box h2{
-    margin:0 0 20px;
-    font-family:'Cormorant Garamond',serif;
-    font-size:38px;
-    color:#75586f;
+.win-box{
+width:min(520px,100%);
+padding:55px 30px;
+text-align:center;
+background:rgba(255,248,251,.96);
+border:1px solid white;
+border-radius:30px;
+box-shadow:0 30px 80px rgba(50,35,45,.25);
+animation:appear .6s ease;
 }
 
-@keyframes pop{
-    from{transform:scale(.8);opacity:0}
-    to{transform:scale(1);opacity:1}
+@keyframes appear{
+from{transform:scale(.8);opacity:0}
+to{transform:scale(1);opacity:1}
 }
 
-@media(max-width:600px){
-    .container{
-        padding:27px 12px 22px;
-        width:96vw;
-    }
+.win-decoration{
+color:#aa8798;
+font-family:'Cormorant Garamond',serif;
+font-size:27px;
+letter-spacing:12px;
+margin-bottom:20px;
+}
 
-    h1{
-        font-size:44px;
-    }
+.win-box h2{
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(40px,9vw,65px);
+font-weight:600;
+color:#594b55;
+margin-bottom:30px;
+}
 
-    .grid{
-        gap:7px;
-        padding:8px;
-        grid-template-rows:repeat(2,85px);
-    }
+.next-button{
+border:none;
+background:#a88696;
+color:white;
+font-family:'Quicksand',sans-serif;
+font-size:16px;
+letter-spacing:3px;
+padding:15px 40px;
+border-radius:50px;
+cursor:pointer;
+transition:transform .2s ease,background .2s ease;
+}
 
-    .shape{
-        width:60px;
-        height:60px;
-    }
+.next-button:hover{
+transform:translateY(-3px);
+background:#947184;
+}@media(max-width:600px){
+.page{padding:35px 12px}
 
-    .triangle{
-        border-left-width:30px;
-        border-right-width:30px;
-        border-bottom-width:57px;
-    }
+.game-container{
+padding:14px;
+border-radius:22px;
+}
 
-    .diamond{
-        width:45px;
-        height:45px;
-    }
+.grid{
+gap:9px;
+grid-template-rows:repeat(2,85px);
+}
 
-    .heart{
-        width:54px;
-        height:49px;
-    }
+.shape{
+width:58px;
+height:58px;
+}
 
-    .heart:before,
-    .heart:after{
-        width:54px;
-        height:54px;
-    }
+.triangle{
+border-left-width:29px;
+border-right-width:29px;
+border-bottom-width:54px;
+}
 
-    .heart:before{
-        top:-27px;
-    }
+.diamond{
+width:44px;
+height:44px;
+}
 
-    .heart:after{
-        left:27px;
-    }
+.heart{
+width:48px;
+height:48px;
+margin-top:8px;
+margin-left:8px;
+}
+
+.heart::before,.heart::after{
+width:48px;
+height:48px;
+}
+
+.heart::before{top:-24px}
+.heart::after{left:24px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="decor d1">✦</div>
-<div class="decor d2">♡</div>
-<div class="decor d3">✧</div>
-<div class="decor d4">✦</div>
+<main class="page">
 
-<div class="container">
+<div class="ornament">✦　⋆　✦</div>
 
-    <h1>Order ♡</h1>
-    <div class="subtitle">remember the order, then put them back</div>
+<h1>Order</h1>
 
-    <div class="round" id="roundText">Round 1</div>
-    <div class="instruction" id="instruction">
-        Look carefully...
-    </div>
+<div class="subtitle">♡　remember the order　♡</div>
 
-    <div class="grid" id="grid"></div>
+<div class="round-info" id="roundText">Round 1</div>
 
-    <div class="controls">
-        <button id="checkBtn" onclick="checkOrder()" disabled>DONE</button>
-        <button id="lookBtn" class="secondary" onclick="lookAgain()" disabled>LOOK AGAIN</button>
-    </div>
+<div class="instruction" id="instruction">
+Look carefully...
+</div>
+
+<section class="game-container">
+
+<div class="grid" id="grid"></div>
+
+<div class="controls">
+
+<button
+class="game-button"
+id="checkBtn"
+onclick="checkOrder()"
+disabled>
+done
+</button>
+
+<button
+class="game-button secondary"
+id="lookBtn"
+onclick="lookAgain()"
+disabled>
+look again
+</button>
 
 </div>
 
-<div class="success-window" id="successWindow">
-    <div class="success-box">
-        <h2>YAY GOODJOBBB</h2>
-        <button onclick="goNext()">NEXT ♡</button>
-    </div>
+</section>
+
+<div class="bottom-ornament">✧　·　✧　·　✧</div>
+
+</main>
+
+<div class="win-screen" id="winScreen">
+
+<div class="win-box">
+
+<div class="win-decoration">✦　♡　✦</div>
+
+<h2>YAY GOODJOBBB</h2>
+
+<button class="next-button" onclick="goNext()">
+next
+</button>
+
+</div>
+
 </div>
 
 <script>
-const shapeData = [
-    {type:"circle",color:"pink"},
-    {type:"square",color:"blue"},
-    {type:"triangle",color:"lavender"},
-    {type:"diamond",color:"tan"},
-    {type:"star",color:"red"},
-    {type:"heart",color:"green"}
+const shapeData=[
+{type:"circle",color:"pink"},
+{type:"square",color:"blue"},
+{type:"triangle",color:"lavender"},
+{type:"diamond",color:"tan"},
+{type:"star",color:"red"},
+{type:"heart",color:"green"}
 ];
 
-const roundSizes = [4,5,6];
+const roundSizes=[4,5,6];
 
-let round = 0;
-let correctOrder = [];
-let currentOrder = [];
-let previewing = true;
-let draggingShape = null;
-let draggingCell = null;
-let dragMoved = false;
+let round=0;
+let correctOrder=[];
+let previewing=true;
+let draggingShape=null;
+let draggingCell=null;
 
-const grid = document.getElementById("grid");
-const instruction = document.getElementById("instruction");
-const roundText = document.getElementById("roundText");
-const checkBtn = document.getElementById("checkBtn");
-const lookBtn = document.getElementById("lookBtn");
+const grid=document.getElementById("grid");
+const instruction=document.getElementById("instruction");
+const roundText=document.getElementById("roundText");
+const checkBtn=document.getElementById("checkBtn");
+const lookBtn=document.getElementById("lookBtn");
+const winScreen=document.getElementById("winScreen");
 
 function shuffle(array){
-    const result = [...array];
+const result=[...array];
 
-    for(let i=result.length-1;i>0;i--){
-        const j=Math.floor(Math.random()*(i+1));
-        [result[i],result[j]]=[result[j],result[i]];
-    }
+for(let i=result.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[result[i],result[j]]=[result[j],result[i]];
+}
 
-    return result;
+return result;
 }
 
 function createShape(shape){
-    const el=document.createElement("div");
+const element=document.createElement("div");
 
-    el.className=`shape ${shape.type} ${shape.color}`;
-    el.dataset.type=shape.type;
-    el.dataset.color=shape.color;
+element.className=
+`shape ${shape.type} ${shape.color}`;
 
-    return el;
+element.dataset.type=shape.type;
+element.dataset.color=shape.color;
+
+return element;
 }
 
 function getShapeData(type){
-    return shapeData.find(s=>s.type===type);
+return shapeData.find(shape=>shape.type===type);
 }
 
 function createCells(){
-    grid.innerHTML="";
+grid.innerHTML="";
 
-    for(let i=0;i<8;i++){
-        const cell=document.createElement("div");
-        cell.className="grid-cell";
-        cell.dataset.index=i;
+for(let i=0;i<8;i++){
+const cell=document.createElement("div");
 
-        grid.appendChild(cell);
-    }
+cell.className="grid-cell";
+cell.dataset.index=i;
+
+grid.appendChild(cell);
+}
 }
 
 function randomCells(count){
-    const cells=[0,1,2,3,4,5,6,7];
+const cells=[0,1,2,3,4,5,6,7];
 
-    for(let i=cells.length-1;i>0;i--){
-        const j=Math.floor(Math.random()*(i+1));
-        [cells[i],cells[j]]=[cells[j],cells[i]];
-    }
+for(let i=cells.length-1;i>0;i--){
+const j=Math.floor(Math.random()*(i+1));
+[cells[i],cells[j]]=[cells[j],cells[i]];
+}
 
-    return cells.slice(0,count);
+return cells.slice(0,count);
 }
 
 function renderShapes(order,canMove=true){
-    createCells();
+createCells();
 
-    const positions=randomCells(order.length);
+const positions=randomCells(order.length);
 
-    order.forEach((type,i)=>{
-        const cell=grid.children[positions[i]];
-        const shape=createShape(getShapeData(type));
+order.forEach((type,index)=>{
+const cell=grid.children[positions[index]];
+const shape=createShape(getShapeData(type));
 
-        if(canMove){
-            enableDragging(shape);
-        }
-
-        cell.appendChild(shape);
-    });
+if(canMove){
+enableDragging(shape);
 }
 
-function renderFixedOrder(order,canMove=false){
-    createCells();
+cell.appendChild(shape);
+});
+}
 
-    order.forEach((type,i)=>{
-        const cell=grid.children[i];
-        const shape=createShape(getShapeData(type));
+function renderFixedOrder(order){
+createCells();
 
-        if(canMove){
-            enableDragging(shape);
-        }
+order.forEach((type,index)=>{
+const cell=grid.children[index];
+const shape=createShape(getShapeData(type));
 
-        cell.appendChild(shape);
-    });
+cell.appendChild(shape);
+});
 }
 
 function enableDragging(shape){
-    shape.addEventListener("mousedown",startDrag);
-    shape.addEventListener("touchstart",startDrag,{passive:false});
+shape.addEventListener("mousedown",startDrag);
+
+shape.addEventListener(
+"touchstart",
+startDrag,
+{passive:false}
+);
 }
 
-function startDrag(e){
-    if(previewing) return;
+function startDrag(event){
+if(previewing)return;
 
-    e.preventDefault();
+event.preventDefault();
 
-    draggingShape=e.currentTarget;
-    draggingCell=draggingShape.parentElement;
-    dragMoved=false;
+draggingShape=event.currentTarget;
+draggingCell=draggingShape.parentElement;
 
-    draggingShape.classList.add("dragging");
+draggingShape.classList.add("dragging");
 
-    document.addEventListener("mousemove",moveDrag);
-    document.addEventListener("mouseup",endDrag);
+document.addEventListener("mousemove",moveDrag);
+document.addEventListener("mouseup",endDrag);
 
-    document.addEventListener("touchmove",moveDrag,{passive:false});
-    document.addEventListener("touchend",endDrag);
+document.addEventListener(
+"touchmove",
+moveDrag,
+{passive:false}
+);
+
+document.addEventListener("touchend",endDrag);
 }
 
-function getPointerPosition(e){
-    if(e.touches && e.touches.length){
-        return {
-            x:e.touches[0].clientX,
-            y:e.touches[0].clientY
-        };
-    }
+function getPointerPosition(event){
+if(event.touches&&event.touches.length){
+return{
+x:event.touches[0].clientX,
+y:event.touches[0].clientY
+};
+}
 
-    return {
-        x:e.clientX,
-        y:e.clientY
-    };
+return{
+x:event.clientX,
+y:event.clientY
+};
 }
 
 function getCellAtPoint(x,y){
-    const elements=document.elementsFromPoint(x,y);
+const elements=document.elementsFromPoint(x,y);
 
-    for(const element of elements){
-        if(element.classList && element.classList.contains("grid-cell")){
-            return element;
-        }
+for(const element of elements){
 
-        if(element.parentElement &&
-           element.parentElement.classList &&
-           element.parentElement.classList.contains("grid-cell")){
-            return element.parentElement;
-        }
-    }
-
-    return null;
+if(
+element.classList&&
+element.classList.contains("grid-cell")
+){
+return element;
 }
 
-function moveDrag(e){
-    if(!draggingShape) return;
+if(
+element.parentElement&&
+element.parentElement.classList&&
+element.parentElement.classList.contains("grid-cell")
+){
+return element.parentElement;
+}
+}
 
-    e.preventDefault();
+return null;
+}
 
-    const point=getPointerPosition(e);
-    const targetCell=getCellAtPoint(point.x,point.y);
+function moveDrag(event){
+if(!draggingShape)return;
 
-    if(targetCell && targetCell!==draggingCell){
-        dragMoved=true;
-        swapIntoCell(draggingCell,targetCell);
-        draggingCell=targetCell;
-    }
+event.preventDefault();
+
+const point=getPointerPosition(event);
+
+const targetCell=
+getCellAtPoint(point.x,point.y);
+
+if(
+targetCell&&
+targetCell!==draggingCell
+){
+swapIntoCell(
+draggingCell,
+targetCell
+);
+
+draggingCell=targetCell;
+}
 }
 
 function swapIntoCell(fromCell,toCell){
-    const targetShape=toCell.querySelector(".shape");
+const targetShape=
+toCell.querySelector(".shape");
 
-    if(targetShape){
-        fromCell.appendChild(targetShape);
-    }
-
-    toCell.appendChild(draggingShape);
+if(targetShape){
+fromCell.appendChild(targetShape);
 }
 
-function endDrag(){
-    if(!draggingShape) return;
+toCell.appendChild(draggingShape);
+    }function endDrag(){
+if(!draggingShape)return;
 
-    draggingShape.classList.remove("dragging");
+draggingShape.classList.remove("dragging");
 
-    document.removeEventListener("mousemove",moveDrag);
-    document.removeEventListener("mouseup",endDrag);
+document.removeEventListener(
+"mousemove",
+moveDrag
+);
 
-    document.removeEventListener("touchmove",moveDrag);
-    document.removeEventListener("touchend",endDrag);
+document.removeEventListener(
+"mouseup",
+endDrag
+);
 
-    draggingShape=null;
-    draggingCell=null;
+document.removeEventListener(
+"touchmove",
+moveDrag
+);
+
+document.removeEventListener(
+"touchend",
+endDrag
+);
+
+draggingShape=null;
+draggingCell=null;
 }
 
 function getCurrentOrder(){
-    const result=[];
+const result=[];
 
-    [...grid.children].forEach(cell=>{
-        const shape=cell.querySelector(".shape");
+[...grid.children].forEach(cell=>{
+const shape=cell.querySelector(".shape");
 
-        if(shape){
-            result.push(shape.dataset.type);
-        }
-    });
+if(shape){
+result.push(shape.dataset.type);
+}
+});
 
-    return result;
+return result;
 }
 
 function arraysEqual(a,b){
-    if(a.length!==b.length) return false;
+if(a.length!==b.length)return false;
 
-    return a.every((value,index)=>value===b[index]);
+return a.every(
+(value,index)=>value===b[index]
+);
 }
 
 function beginRound(){
-    previewing=true;
+previewing=true;
 
-    roundText.textContent=`Round ${round+1}`;
-    instruction.textContent="Look carefully...";
+roundText.textContent=
+`Round ${round+1}`;
 
-    checkBtn.disabled=true;
-    lookBtn.disabled=true;
+instruction.textContent=
+"Look carefully...";
 
-    correctOrder=shuffle(
-        shapeData
-            .slice(0,roundSizes[round])
-            .map(shape=>shape.type)
-    );
+checkBtn.disabled=true;
+lookBtn.disabled=true;
 
-    renderFixedOrder(correctOrder,false);
+correctOrder=shuffle(
+shapeData
+.slice(0,roundSizes[round])
+.map(shape=>shape.type)
+);
 
-    setTimeout(()=>{
-        if(round<roundSizes.length){
-            hideAndShuffle();
-        }
-    },2200);
+renderFixedOrder(correctOrder);
+
+setTimeout(()=>{
+if(previewing){
+hideAndShuffle();
+}
+},2200);
 }
 
 function hideAndShuffle(){
-    previewing=false;
+previewing=false;
 
-    const shuffledOrder=shuffle([...correctOrder]);
+const shuffledOrder=
+shuffle([...correctOrder]);
 
-    renderShapes(shuffledOrder,true);
+renderShapes(
+shuffledOrder,
+true
+);
 
-    instruction.textContent="Put them in the correct order.";
-    checkBtn.disabled=false;
-    lookBtn.disabled=false;
+instruction.textContent=
+"Put them in the correct order.";
+
+checkBtn.disabled=false;
+lookBtn.disabled=false;
 }
 
 function checkOrder(){
-    if(previewing) return;
+if(previewing)return;
 
-    currentOrder=getCurrentOrder();
+const currentOrder=
+getCurrentOrder();
 
-    if(arraysEqual(currentOrder,correctOrder)){
-        checkBtn.disabled=true;
-        lookBtn.disabled=true;
-        instruction.textContent="✦ correct ♡";
+if(
+arraysEqual(
+currentOrder,
+correctOrder
+)
+){
 
-        setTimeout(()=>{
-            nextRound();
-        },650);
+checkBtn.disabled=true;
+lookBtn.disabled=true;
 
-    }else{
-        instruction.textContent="try again dumbass";
+instruction.textContent=
+"✦ correct ♡";
 
-        checkBtn.disabled=false;
-        lookBtn.disabled=false;
+setTimeout(()=>{
+nextRound();
+},650);
 
-        // Nothing is moved or reshuffled here.
-        // The correct answer also stays exactly the same.
-    }
+}else{
+
+instruction.textContent=
+"try again dumbass";
+
+}
 }
 
 function lookAgain(){
-    if(previewing) return;
+if(previewing)return;
 
-    previewing=true;
+previewing=true;
 
-    checkBtn.disabled=true;
-    lookBtn.disabled=true;
+checkBtn.disabled=true;
+lookBtn.disabled=true;
 
-    instruction.textContent="Look carefully...";
+instruction.textContent=
+"Look carefully...";
 
-    // Show the SAME correct answer.
-    renderFixedOrder(correctOrder,false);
+renderFixedOrder(correctOrder);
 
-    setTimeout(()=>{
-        if(!previewing) return;
+setTimeout(()=>{
 
-        // Only LOOK AGAIN causes the displayed order to change.
-        // correctOrder itself NEVER changes.
-        const shuffledOrder=shuffle([...correctOrder]);
+const shuffledOrder=
+shuffle([...correctOrder]);
 
-        previewing=false;
+previewing=false;
 
-        renderShapes(shuffledOrder,true);
+renderShapes(
+shuffledOrder,
+true
+);
 
-        instruction.textContent="Put them in the correct order.";
-        checkBtn.disabled=false;
-        lookBtn.disabled=false;
-    },2200);
+instruction.textContent=
+"Put them in the correct order.";
+
+checkBtn.disabled=false;
+lookBtn.disabled=false;
+
+},2200);
 }
 
 function nextRound(){
-    round++;
+round++;
 
-    if(round>=roundSizes.length){
-        showSuccess();
-        return;
-    }
-
-    beginRound();
-}
-
-function showSuccess(){
-    document.getElementById("successWindow").style.display="flex";
-}
-
-function goNext(){
-    window.location.href="match.html";
+if(round>=roundSizes.length){
+showWin();
+return;
 }
 
 beginRound();
-  </script>
+}
+
+function showWin(){
+winScreen.classList.add("show");
+}
+
+function goNext(){
+window.location.href="match.html";
+}
+
+beginRound();
+
+</script>
+
 </body>
 </html>
